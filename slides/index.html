@@ -18,27 +18,27 @@
     <link rel="stylesheet" href="css/theme/white.css" id="theme">
 
     <style media="screen">
-     .reveal {
-         font-size: 3em;
-     }
+        .reveal {
+            font-size: 3em;
+        }
 
-     /* .reveal p,
+        /* .reveal p,
         .reveal h2 {
         text-align: left;
         } */
 
-     /* .reveal p {
+        /* .reveal p {
         text-indent: -1em;
         margin-left: 1em;
         } */
 
-     #watermark {
-         font-size: .6em;
-         position: fixed;
-         bottom: .25em;
-         right: .5em;
-         z-index: 1000;
-     }
+        #watermark {
+            font-size: .6em;
+            position: fixed;
+            bottom: .25em;
+            right: .5em;
+            z-index: 1000;
+        }
     </style>
 
     <!-- For syntax highlighting -->
@@ -54,7 +54,7 @@
     <div class="reveal">
 
         <p id="watermark">
-            const presenters = ["Luke Warren", "Kevin Heritage"];
+            @LukeJKWarren
         </p>
 
         <!-- Any section element inside of this container is displayed as a slide -->
@@ -62,689 +62,62 @@
 
             <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
                 <textarea data-template>
-                    ### &#x1F410; Ram-da Functional into your JavaScript
+                    ### Squeaky Clean Scripts with Maid
 
-                    A beginners guide to functional JavaScript with Ramda
-
-Note:
-- Luke
-- From entelect
-- Work daily JavaScript
-- Recently functional style with ramda
-- Started by Ed
+                    Utilizing literate programming for documented scripts
                 </textarea>
-                            </section>
+            </section>
 
             <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
                 <textarea data-template>
-                           ## Functions as first class citizens
+                    ## The Problem
 
-Note:
-- Luke
-- Fn as vars/parameters
+                    - Long one liner scripts in our npm files are difficult to read and understand
+                    - Documentation often done as an after-thought and become stale
+                </textarea>
+            </section>
+
+            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
+                <textarea data-template>
+                    ## Literate Programming
+
+                    - What if we could have the best of both?
+                    - Documentation that IS our build scripts
+                    - Scripts that are documentation
                         </textarea>
             </section>
 
             <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
                 <textarea data-template>
-                ## Pure Functions
+                    ## Markdown
 
-                * Given the same input always return the same output
-                * Never mutate parameters
-                * Always return new state
-
-Note:
-- Luke
+                    - Now the defacto documentation language
+                    - Already have support for code blocks - we just need to be able to run them!
+                   
               </textarea>
             </section>
 
             <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
                 <textarea data-template>
-## Currying
+                    ## Introduction to Maid
 
-* A function that can be partially applied 
-  * i.e. function that returns a function
-* Used to make more specific functions
-* Ramda has a handy `curry` function -- covered later
-
-Note:
-- Kevin
-- Partially applied makes more reusable code
-- Scoping - we may not have the data later
-- break problems down into smaller solutions
+                    - Maid is a simple command line tool for runnable markdown files
+                    - You write your build scripts inside of your documentation using the language to describe how it should run
                </textarea>
             </section>
 
             <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
                 <textarea data-template>
-### Currying Example
-``` js
-01  // Curried prop function
-02  const prop = key => obj => obj[key];
-03  
-04  // Partially apply the function
-05  const ageProp = prop('age');
-06  
-07  const goat = {
-08    name: 'Billy',
-09    age: 10
-10  };
-11  
-12  // Function only runs when all parameters are supplied
-13  const age = ageProp(goat); 
-```
+                    ## 2 Simple Rules
 
-Note:
-- Kevin
-- pulls a property off an object given a key
-- gets partially applied
-- can now pull off ages from any obj
-                </textarea>
+                    1. Your script name is an h2
+                    2. Your code must always be inside of triple backticks
+               </textarea>
             </section>
 
             <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
                 <textarea data-template>
-## Going Point-free
-
-* Try avoid identifying your arguments
-* Who likes arguments anyway?
-* Less to name, less to get in the way
-* AKA tacit programming
-
-Note:
-- Luke
-- Style thing
-- args are points
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-## Not point-free
-
-``` js
-01  const ageProp = goat => prop('age')(goat);
-```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-## Point-free
-
-``` js
-01  const ageProp = prop('age');
-```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## OK that's the basics down
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Now say hello to our little friend...
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    # Ramda
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## What is Ramda?
-
-                    * A library specifically designed for functional programming in JS
-                    * Pretty much all the things you know in vanilla JS - with a twist
-                    * Makes it easy to create functional pipelines
-                    * PURE! Well sorta...
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## All your typical iterators
-
-                    ### But putting the data last
-
-                    ``` js
-                    01  // Our data
-                    02  const goats = [
-                    03      "Kevin Heritage",
-                    04      "Luke Warren",
-                    05      "Alex"
-                    06  ];
-                    ```
-
-Note:
-- Kevin
-- this goats array is the data for the next few examples
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Map() - normie JS
-
-                    ``` js
-                    01  const goatToString = name => `Goat ${name}`;
-                    02  
-                    03  const newGoats = goats.map(goatToString);
-                    04  
-                    05  //Result:
-                    08  //    Goat Kevin Heritage
-                    09  //    Goat Luke Warren
-                    10  //    Goat Alex
-                     ```
-
-Note:
-- Kevin
-- this is fine if you already have the data
-- ties your logic to your data
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Map() - Turbo Goat Mode
-
-                    ``` js
-                    01  const { map } = require('ramda');
-                    02  
-                    03  const makeGoats = map(goatToString);
-                    04  
-                    05  const newGoats = makeGoats(goats);
-                    06  
-                    07  // Result:
-                    08  //     Goat Kevin Heritage
-                    09  //     Goat Luke Warren
-                    10  //     Goat Alex
-                    ```
-
-Note:
-- Kevin
-- why we import like this
-  * tree shaking
-  * this is the only thing we need
-  * code is not littered with R.fn
-- Here we separate the data from the logic
-- Data flow right to left
-- Can be partially applied
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## ForEach()
-
-                    ``` js
-                    01  const { forEach } = require('ramda');
-                    02  
-                    03  forEach(console.log, goats); // Provide data when we have it
-                    04  
-                    05  // Result:
-                    06  //     Kevin Heritage
-                    07  //     Luke Warren
-                    08  //     Alex
-                    ```
-
-Note:
-- Kevin
-- Does not have to be partially applied but can be
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Find()
-
-                    ``` js
-                    01  const { find, equals } = require('ramda');
-                    02  
-                    03  const eqAlex = equals('Alex');
-                    04  
-                    05  const findAlex = find(eqAlex);
-                    06  
-                    07  const hereIsAlex = findAlex(goats);
-                    08  
-                    09  // Result:
-                    10  //     Alex
-                    ```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## List Processing
-
-                    ``` js
-                    01  // goats -> extractAgeAndName() -> sortByAge() -> getTopGoat()
-                    ```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Composability
-
-                    * Using 2 or more functions together
-                    * Should aid in readability
-                    * Ramda makes life easy
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Normie JS Mode
-
-                    ``` js
-                    01  // this is not very readable or maintainable
-                    02  const eldestGoat = getTopGoat(sortByAge(extractAgeAndName(goats)));
-                    ```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Introducing...
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Compose
-
-                    Data flows right to left
-
-                    ``` js
-                    01  const { compose } = require('ramda');
-                    02  
-                    03  const getEldestGoat = compose(
-                    04      getTopGoat,
-                    05      sortByAge,
-                    06      extractAgeAndName
-                    07  );
-                    08  
-                    09  const eldestGoat = getEldestGoat(goats);
-                    10  
-                    11  // getTopGoat() <- sortByAge() <- extractAgeAndName() <- goats
-                    ```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Pipe
-
-                    Data flows left to right
-
-                    ``` js
-                    01  const { pipe } = require('ramda');
-                    02  
-                    03  const getEldestGoat = pipe(
-                    04      extractAgeAndName,
-                    05      sortByAge,
-                    06      getTopGoat
-                    07  );
-                    08  
-                    09  const eldestGoat = getEldestGoat(goats);
-                    10  
-                    11  // goats -> extractAgeAndName() -> sortByAge() -> getTopGoat()
-                    ```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Debugging
-
-                    * Debugging in ramda can be tricky
-                    * Where do you place your breakpoint?
-                    * Sometimes you have to move away from the point free-ness of ramda in order to inspect your functions
-
-Note:
-- Kevin
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Breaking Point Free
-
-                    ``` js
-                    01  // The original code
-                    02  let newGoats = map(updateGoat, data);
-                    03  
-                    04  // The debugging code
-                    05  newGoats = map(goat => {
-                    06      console.log('Before: ', goat);
-                    07      const newGoat = updateGoat(goat);
-                    08      console.log('After: ', newGoat);
-                    09      return newGoat;
-                    10  }, goats);
-                    11  // This sucks
-                    ```
-
-Note:
-- Kevin
-- difficult to remove from your code
-- we usually forget them here
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ### Without breaking point free
-
-                    ``` js
-                    01  // A reusable point free example
-                    02  const wrapper = fn => data => {
-                    03    console.log('Before: ', data);
-                    04    const output = fn(data);
-                    05    console.log('After: ', output);
-                    06    return output;
-                    07  };
-                    08  
-                    09  newGoats = map(wrapper(updateGoat));
-                    10  // This is better
-                    ```
-
-Note:
-- Kevin
-- we still have to remove brackets
-- better but not ideal
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Compose
-
-                    ``` js
-                    01  const probe = message => data => {
-                    02      console.log(message, data);
-                    03      return data;
-                    04  };
-                    05  
-                    06  const newExtractedGoats = compose(
-                    07      probe('Updated goats'),
-                    08      updateTheGoats,
-                    09      probe('Extraction of goats'),
-                    10      extractGoats
-                    11  )(goats);
-                    ```
-
-Note:
-- Kevin
-- custom messages
-- simple
-- now we only have to kill some lines or comment out the one console.log
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    # OK Lets get fancy
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ### applySpec()
-
-                    ``` js
-                    01  const { applySpec, prop, always } = require('ramda');
-                    02  
-                    03  // The value of each property in your spec is a function
-                    04  const goatSpec = applySpec({
-                    05      goatName: prop('name'),
-                    06      goatAge: prop('age'),
-                    07      type: always('Goat'),
-                    08      meta: {
-                    09          dob: prop('dateOfBirth')
-                    10      }
-                    11  });
-                    12  
-                    13  const goat = goatSpec(rawGoatJson);
-                    ```
-
-Note:
-- Luke
-- always
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ### curry
-
-                    ``` js
-                    01  const { curry } = require('ramda');
-                    02  
-                    03  const findGoat = (name, goats) => { /*...*/ };
-                    04   
-                    05  // The magic
-                    06  const findGoatVindaloo = curry(findGoat);
-                    07   
-                    08  const findSuperGoat = findGoatVindaloo('super');
-                    09  
-                    10  const theSuperGoat = findSuperGoat(goats);
-                    11  
-                    12  // another way of calling this
-                    13  const batmanGoat = findGoatVindaloo('batman', goats);
-                    ```
-
-Note:
-- Kevin
-- We can also just supply all of the arguments at once
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                 ### Lenses
-                 ``` js
-                 01  const data = {
-                 02    x: {
-                 03      y: 'this value'
-                 04    }
-                 05  };
-                 ```
-
-Note:
-- Luke
-- deep data structure deeper than this one maybe
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                 ### Creating a lens
-                 ``` js
-                 01 const yLens = lensPath(['x', 'y']);
-                 ```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                 ### Viewing a lens
-                 ``` js
-                 01 view(yLens, data);
-                 02
-                 03 // Result
-                 04 //   'this value'
-                 ```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                 ### Setting at a lens
-                 ``` js
-                 01 const newData = set(yLens, 'this other value', data);
-                 02 view(yLens, newData);
-                 03
-                 04 // Result
-                 05 //   'this other value'
-                 ```
-
-Note:
-- Kevin
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                  ### Using over to apply a function at a lens
-                  ``` js
-                  01 const newData = over(yLens, toUpper, data);
-                  02
-                  03 view(yLens, newData);
-                  04
-                  05 // Result
-                  06 //   'THIS VALUE'
-                  ```
-Note:
-- Kevin
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                   ### Placeholder magic
-                   ``` js
-                   01 const names = ['Kevin', 'Luke', 'Alex', ...];
-                   02 
-                   03 const namesContain = contains(__, names);
-                   04 
-                   05 const alexExists = namesContain('Alex');
-                   06 // MAGICAL!!!!
-                   07 // Alternative: const namesContain = flip(contains)(names)
-                   ```
-
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                  ### Promises
-                  ``` js
-                  01 const db = {
-                  02   users: {
-                  03     ...
-                  04   }
-                  05 };
-                  06 
-                  07 const lookupUser = (userId) => Promise.resolve(db.users[userId]);
-                  08 const lookupFollowers = (user) => Promise.resolve(user.followers);
-                  09 
-                  10 const followersPromise = lookupUser('Alex').then(lookupFollowers);
-                  11 
-                  12 followersPromise
-                  13   .then(followers => console.log('Followers:', followers));
-                  ```
-
-Note:
-- Kevin
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                  ### Introducing composeP
-                  ``` js
-                  01 const followersForUser = composeP(
-                  02   probe('End result'),
-                  03   lookupFollowers,
-                  04   probe('Lets look at the value here'),
-                  05   lookupUser
-                  06 );
-                  07
-                  08 followersForUser('Alex')
-                  09   .then(followers => console.log('Followers:', followers));
-                  ```
-Note:
-- Luke
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## It's a Journey
-
-                    * Don't stop... believing...
-                    * Start with a sprinkle of Ramda before going full goatard
-                    * It's a mindset shift and it takes some time to get used to
-
-Note:
-- Both
-- Kevin - We also did unnecessary function wrapping at the start
-- Teaches you how to take a complex problem and break it down into smaller solutions to solve the problem
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ### Links we like
-
-                    * https://github.com/ramda/ramda/wiki/What-Function-Should-I-Use%3F
-                    * http://randycoulman.com/blog/categories/thinking-in-ramda/
-                    * https://www.sitepoint.com/currying-in-functional-javascript/
-                </textarea>
-            </section>
-
-            <section data-markdown data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ### And a few more
-
-                    * http://lucasmreis.github.io/blog/pointfree-javascript/
-                    * http://randycoulman.com/blog/2016/06/21/thinking-in-ramda-pointfree-style/
-                    * http://ramdajs.com/ (of course)
+                    ### Lets Jump into a few demos
                 </textarea>
             </section>
 
@@ -752,9 +125,9 @@ Note:
                 <textarea data-template>
                     ## Thanks
 
-                    @LukejkWarren
+                     - Twitter @LukejkWarren
+                     - Github and Bitbucket LukeJKW
 
-                    @Slugger77
                 </textarea>
             </section>
 
