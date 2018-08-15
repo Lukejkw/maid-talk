@@ -1,4 +1,4 @@
-# Maid is Awesome repo
+# Demo 3
 
 ## install
 
@@ -25,6 +25,8 @@ npm i;
 ```
 
 ## start
+
+Starts up both the client and server
 
 Runs tasks `start:client` and `start:server` in parallel
 

@@ -1,6 +1,6 @@
-# Maid is Awesome repo
+# Demo 1
 
-## test:client
+## test
 
 Runs all the client tests
 
@@ -9,9 +9,9 @@ cd ../src/client;
 npm t;
 ```
 
-## lint:client
+## lint
 
-Makes sure that the code follows correct conventions
+Makes sure that the code follows correct coding conventions
 
 ```bash
 cd ../src/client;
