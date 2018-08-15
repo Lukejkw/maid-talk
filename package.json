@@ -5,5 +5,10 @@
   "main": "index.js",
   "scripts": { },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "author": {
+    "name": "Luke Warren",
+    "email": "lukejkw@gmail.com",
+    "web": "http://lukewarrendev.co.za"
+  }
 }
