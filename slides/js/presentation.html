@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Ramda</title>
+    <meta name="description" content="Ramda">
+
+    <meta name="author" content="Luke Warren, Kevin Heritage">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/white.css" id="theme">
+
+    <style media="screen">
+        .reveal {
+            font-size: 3em;
+        }
+
+        /* .reveal p,
+        .reveal h2 {
+            text-align: left;
+        } */
+
+        /* .reveal p {
+            text-indent: -1em;
+            margin-left: 1em;
+        } */
+
+        #watermark {
+            font-size: .6em;
+            position: fixed;
+            bottom: .25em;
+            right: .5em;
+            z-index: 1000;
+        }
+    </style>
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <p id="watermark">
+            const presenters = ["Luke Warren", "Kevin Heritage"];
+        </p>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### &#x1F410; Ram-da Functional into your JavaScript
+            
+
+                    A beginners guide to functional JavaScript with Ramda
+                </textarea>
+
+
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                           ## Functions as first class citizens
+                        </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                ## Pure Functions
+
+                * given the same input always return the same output
+                * never mutate parameters
+                * always return new state
+              </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Currying
+
+* A function that can be partially applied 
+* i.e. function that returns a function
+* Used to make more specific functions
+* Ramda has a handy `curry` function -- covered later
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Currying Example
+``` js
+// Curried prop function
+const prop = key => obj => obj[key];
+
+// Partially apply the function
+const ageProp = prop('age');
+
+const goat = {
+  name: 'Billy',
+  age: 10
+};
+
+// Function only runs when all parameters are supplied
+const age = ageProp(goat); 
+```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Going Point-free
+
+* Try avoid identifying your arguments
+* Who likes arguments anyway?
+* Less to name, less to get in the way
+* AKA tacit programming
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Not point-free
+
+``` js
+const ageProp = goat => prop('age')(goat);
+```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Point-free
+
+``` js
+const ageProp = prop('age');
+```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## OK that's the basics down
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Now say hello to our little friend...
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    # Ramda
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## What is Ramda?
+
+                    * A library specifically designed for functional programming in JS
+                    * Pretty much all the things you know in vanilla JS - with a twist
+                    * Makes it easy to create functional pipelines
+                    * PURE! Well sorta...
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## All your typical iterators
+
+                    ### But putting the data last
+
+                    ``` js
+                    // Our data
+                    const goats = [
+                        "Kevin Heritage",
+                        "Luke Warren",
+                        "Alex"
+                    ];
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Map() - normie JS
+
+                    ``` js
+                    const goatToString = name => `Goat ${name}`;
+
+                    const newGoats = goats.map(goatToString);
+
+                    /*
+                    Result:
+                        Goat Kevin Heritage
+                        Goat Luke Warren
+                        Goat Alex
+                    */
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Map() - Turbo Goat Mode
+
+                    ``` js
+                    const { map } = require('ramda');
+
+                    const goatToString = name => `Goat ${name}`;
+
+                    const newGoats = map(goatToString, goats);
+
+                    /*
+                    Result:
+                        Goat Kevin Heritage
+                        Goat Luke Warren
+                        Goat Alex
+                    */
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## ForEach()
+
+                    ``` js
+                    const { forEach } = require('ramda');
+
+                    forEach(console.log, goats); // Provide data when we have it
+
+                    /*
+                    Result: 
+                        Kevin Heritage
+                        Luke Warren
+                        Alex
+                    */
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Find()
+
+                    ``` js
+                    const { find, equals } = require('ramda');
+
+                    const eqAlex = equals('Alex');
+
+                    const findAlex = find(eqAlex);
+
+                    const hereIsAlex = findAlex(goats);
+
+                    /*
+                    Result: 
+                        Alex
+                    */
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## List Processing
+
+                    ``` js
+                    // goats -> extractAgeAndName() -> sortByAge() -> getTopGoat()
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Composability
+
+                    * Using 2 or more functions together
+                    * Should aid in readability
+                    * Ramda makes life easy
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Normie JS Mode
+
+                    ``` js
+                    // this is not very readable
+                    const eldestGoat = getTopGoat(sortByAge(extractAgeAndName(goats)));
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Introducing...
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Compose
+
+                    Data flows right to left
+
+                    ``` js
+                    const { compose } = require('ramda');
+
+                    const getEldestGoat = compose(
+                        getTopGoat,
+                        sortByAge,
+                        extractAgeAndName
+                    );
+
+                    const eldestGoat = getEldestGoat(goats);
+
+                    // getTopGoat() <- sortByAge() <- extractAgeAndName() <- goats
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Pipe
+
+                    Data flows left to right
+
+                    ``` js
+                    const { pipe } = require('ramda');
+
+                    const getEldestGoat = pipe(
+                        extractAgeAndName,
+                        sortByAge,
+                        getTopGoat
+                    );
+
+                    const eldestGoat = getEldestGoat(goats);
+
+                    // goats -> extractAgeAndName() -> sortByAge() -> getTopGoat()
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Debugging
+
+                    * Debugging in ramda can be tricky 
+                    * Where do you place your breakpoint?
+                    * Sometimes you have to move away from the point free-ness of ramda in order to inspect your functions
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Breaking Point Free
+
+                    ``` js
+                    // The original code
+                    let newGoats = map(updateGoat, data);
+
+                    // The debugging code
+                    newGoats = map(goat => {
+                        console.log('Before: ', goat);
+                        const newGoat = updateGoat(goat);
+                        console.log('After:', newGoat);
+                    }, goats);
+                    // This sucks
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### Without breaking point free
+
+                    ``` js
+                    // A reusable point free example
+                    const wrapper = fn => data => {
+                      console.log('Before: ', data);
+                      const output = fn(data);
+                      console.log('After: ', output);
+                      return output;
+                    };
+
+                    newGoats = map(wrapper(updateGoat));
+                    // This is better
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Compose
+
+                    ``` js
+                    const probe = message => data => {
+                        console.log(message, data);
+                        return data;
+                    };
+
+                    const newExtractedGoats = compose(
+                        probe('Updated goats'),
+                        updateTheGoats,
+                        probe('Extraction of goats'),
+                        extractGoats
+                    )(goats);
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    # OK Lets get fancy
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### applySpec()
+
+                    ``` js
+                    const { applySpec, prop } = require('ramda');
+
+                    // The value of each property in your spec is a function
+                    const goatSpec = applySpec({
+                        goatName: prop('name'),
+                        goatAge: prop('age'),
+                        meta: {
+                            dob: prop('dateOfBirth')
+                        }
+                    });
+
+                    const goat = goatSpec(rawGoatJson);
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### curry
+
+                    ``` js
+                    const { curry } = require('ramda');
+
+                    const findGoatByRole = (goatRole, goats) => { /*...*/ };
+
+                    // curry() gives us a curried version of findGoatByRole
+                    const findGoatByRoleVindaloo = curry(findGoatByRole);
+
+                    const findSuperGoat = findGoatByRoleVindaloo('super');
+
+                    const theSuperGoat = findSuperGoat(goats);
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## It's a Journey
+                    
+                    * Don't stop... believing...
+                    * Start with a sprinkle of Ramda before going full goatard
+                    * It's a mindset shift and it takes some time to get used to
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### Links we like
+                    
+                    * https://github.com/ramda/ramda/wiki/What-Function-Should-I-Use%3F
+                    * http://randycoulman.com/blog/categories/thinking-in-ramda/
+                    * https://www.sitepoint.com/currying-in-functional-javascript/
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### And a few more
+                    
+                    * http://lucasmreis.github.io/blog/pointfree-javascript/
+                    * http://randycoulman.com/blog/2016/06/21/thinking-in-ramda-pointfree-style/
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ## Thanks
+                    
+                    @LukejkWarren
+                    
+                    @Slugger77
+                </textarea>
+            </section>
+
+            <!-- /.slides -->
+        </div>
+        <!-- /.reveal -->
+    </div>
+
+    <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+    <script src="node_modules/reveal.js/js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            progress: false,
+            history: true,
+            center: true,
+            transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+            transitionSpeed: 'fast',
+            multiplex: {
+                secret: null,
+                id: 'e6068a2dfaf4c6e1', // id, obtained from socket.io server
+                url: 'ksrevealjs.jit.su:80' // Location of socket.io server
+            },
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } },
+            ]
+        });
+    </script>
+
+</body>
+
+</html>
